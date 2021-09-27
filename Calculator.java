@@ -382,6 +382,6 @@ public class Calculator {
                     }
                 }
             }
-        return 100.0;
+        return 0.0;
     }
 }
