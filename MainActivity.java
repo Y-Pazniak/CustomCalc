@@ -1,5 +1,7 @@
 package com.example.customcalcv3;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -7,6 +9,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private int firstStepCount = 0;
@@ -64,16 +67,15 @@ public class MainActivity extends AppCompatActivity {
             RadioButton rb = (RadioButton) v;
             int buttonId = rb.getId();
             LinearLayout firstStep = findViewById(R.id.first_step);
-            View firstStepView;
             LinearLayout secondStep = findViewById(R.id.second_step);
-            View secondStepView;
             LinearLayout thirdStep = findViewById(R.id.third_step);
-            View thirdStepView;
             LinearLayout fourthStep = findViewById(R.id.fourth_step);
-            View fourthStepView;
             LinearLayout fifthStep = findViewById(R.id.fifth_step);
-            View fifthStepView;
 
+            View firstStepView;
+            View secondStepView;
+            View thirdStepView;
+            View fourthStepView;
             switch (buttonId) {
                 //first level
                 case R.id.legkovoi_button:
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.ne_legkovoi_button:
-                    if (firstStepCount < 1){
+                    if (firstStepCount < 1) {
                         firstStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_choose_vehicle, firstStep, false);
                         firstStep.addView(firstStepView);
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.ts_n1_n2_n3:
-                    if(secondStepCount < 1){
+                    if (secondStepCount < 1) {
                         disableTypeHeavyVehicle(buttonId);
                         secondStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_mass_n1_vehicle, secondStep, false);
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.ts_m2_m3:
-                    if(secondStepCount < 1){
+                    if (secondStepCount < 1) {
                         disableTypeHeavyVehicle(buttonId);
                         secondStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_choose_type_of_engine_offroad, secondStep, false);
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.ts_offroad:
-                    if(secondStepCount < 1){
+                    if (secondStepCount < 1) {
                         disableTypeHeavyVehicle(buttonId);
                         secondStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_dump_truck_weight, secondStep, false);
@@ -160,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.trailer_o4:
-                    if(secondStepCount < 1){
+                    if (secondStepCount < 1) {
                         disableTypeHeavyVehicle(buttonId);
                         secondStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_trailers_o4_weight, secondStep, false);
@@ -205,15 +207,23 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
 
-                case R.id.less_2_mass_button: calculator.setN1Less2(true);
-                case R.id.between_2_3_mass_button: calculator.setN1Between2And3(true);
-                case R.id.between_3_5_mass_button: calculator.setN1Between3And5(true);
-                case R.id.between_5_8_mass_button: calculator.setN1Between5And8(true);
-                case R.id.between_8_12_mass_button: calculator.setN1Between8And12(true);
-                case R.id.between_12_20_mass_button: calculator.setN1Between12And20(true);
-                case R.id.between_20_30_mass_button: calculator.setN1Between20And30(true);
-                case R.id.between_30_50_mass_button: calculator.setN1Between30And50(true);
-                    if (thirdStepCount < 1){
+                case R.id.less_2_mass_button:
+                    calculator.setN1Less2(true);
+                case R.id.between_2_3_mass_button:
+                    calculator.setN1Between2And3(true);
+                case R.id.between_3_5_mass_button:
+                    calculator.setN1Between3And5(true);
+                case R.id.between_5_8_mass_button:
+                    calculator.setN1Between5And8(true);
+                case R.id.between_8_12_mass_button:
+                    calculator.setN1Between8And12(true);
+                case R.id.between_12_20_mass_button:
+                    calculator.setN1Between12And20(true);
+                case R.id.between_20_30_mass_button:
+                    calculator.setN1Between20And30(true);
+                case R.id.between_30_50_mass_button:
+                    calculator.setN1Between30And50(true);
+                    if (thirdStepCount < 1) {
                         thirdStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_age_auto, thirdStep, false);
                         thirdStep.addView(thirdStepView);
@@ -224,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.m2_offroad_electroengine_button:
-                    if (thirdStepCount < 1){
+                    if (thirdStepCount < 1) {
                         thirdStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_age_auto, thirdStep, false);
                         thirdStep.addView(thirdStepView);
@@ -236,21 +246,24 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.m2_offroad_petrolengine_button:
-                    if (thirdStepCount < 1){
+                    if (thirdStepCount < 1) {
                         calculator.setGasOffroad(true);
                         thirdStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_offroad_engine_volume, thirdStep, false);
                         thirdStep.addView(thirdStepView);
-                        m2OffroadPetrolEngine.setEnabled(false);
+                        m2OffroadElectroengine.setEnabled(false);
                         setOffroadVolumeListener();
                         thirdStepCount++;
                     }
                     break;
 
-                case R.id.dump_truck_50_between_80_button: calculator.setDumpTruckWeight50Between80(true);
-                case R.id.dump_truck_80_between_350_button: calculator.setDumpTruckWeight80Between350(true);
-                case R.id.dump_truck_more_350_button: calculator.setDumpTruckWeightMore350(true);
-                    if (thirdStepCount < 1){
+                case R.id.dump_truck_50_between_80_button:
+                    calculator.setDumpTruckWeight50Between80(true);
+                case R.id.dump_truck_80_between_350_button:
+                    calculator.setDumpTruckWeight80Between350(true);
+                case R.id.dump_truck_more_350_button:
+                    calculator.setDumpTruckWeightMore350(true);
+                    if (thirdStepCount < 1) {
                         thirdStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_age_auto, thirdStep, false);
                         thirdStep.addView(thirdStepView);
@@ -262,8 +275,8 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.trailers_10_button:
                 case R.id.halftrailers_10_button:
-                    if (thirdStepCount < 1){
-                        if (buttonId == R.id.trailers_10_button){
+                    if (thirdStepCount < 1) {
+                        if (buttonId == R.id.trailers_10_button) {
                             halfTrailers10.setEnabled(false);
                         } else {
                             trailers10.setEnabled(false);
@@ -278,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //fourth level
                 case R.id.electro_button:
-                    if(fourthStepCount < 1){
+                    if (fourthStepCount < 1) {
                         fuelButton.setEnabled(false);
                         fourthStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_age_auto, fourthStep, false);
@@ -290,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.fuel_button:
                     electroButton.setEnabled(false);
-                    if(fourthStepCount < 1){
+                    if (fourthStepCount < 1) {
                         fourthStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_engine_volume, fourthStep, false);
                         fourthStep.addView(fourthStepView);
@@ -300,11 +313,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
 
-                case R.id.m2_offroad_less_2500_button: calculator.setN1Less2500(true);
-                case R.id.m2_offroad_between_2500_5000_button: calculator.setN1Between2500And5000(true);
-                case R.id.m2_offroad_between_5000_10000_button: calculator.setN1Between5000And10000(true);
+                case R.id.m2_offroad_less_2500_button:
+                    calculator.setN1Less2500(true);
+                case R.id.m2_offroad_between_2500_5000_button:
+                    calculator.setN1Between2500And5000(true);
+                case R.id.m2_offroad_between_5000_10000_button:
+                    calculator.setN1Between5000And10000(true);
                 case R.id.m2_offroad_more_10000_button:
-                    if(fourthStepCount < 1){
+                    if (fourthStepCount < 1) {
                         calculator.setN1More10000(true);
                         fourthStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_age_auto, fourthStep, false);
@@ -316,13 +332,18 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 //fifth level
-                case R.id.volume_less_1000_button: calculator.setLess1000(true);
-                case R.id.volume_between_1000_and_2000_button: calculator.setBetween1000And2000(true);
-                case R.id.volume_between_2000_and_3000_button: calculator.setBetween2000And3000(true);
-                case R.id.volume_between_3000_and_3500_button: calculator.setBetween3000And3500(true);
-                case R.id.volume_bigger_3500_button: calculator.setMore3500(true);
-                    if(fifthStepCount < 1){
-                        fifthStepView = getLayoutInflater()
+                case R.id.volume_less_1000_button:
+                    calculator.setLess1000(true);
+                case R.id.volume_between_1000_and_2000_button:
+                    calculator.setBetween1000And2000(true);
+                case R.id.volume_between_2000_and_3000_button:
+                    calculator.setBetween2000And3000(true);
+                case R.id.volume_between_3000_and_3500_button:
+                    calculator.setBetween3000And3500(true);
+                case R.id.volume_bigger_3500_button:
+                    calculator.setMore3500(true);
+                    if (fifthStepCount < 1) {
+                        View fifthStepView = getLayoutInflater()
                                 .inflate(R.layout.activity_age_auto, fifthStep, false);
                         fifthStep.addView(fifthStepView);
                         setAgeListener();
@@ -331,23 +352,22 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
 
-
                 //count level
                 case R.id.age_car_less_3_button:
                     calculator.setAgeLess3(true);
-                    finalText.setText(calculator.getCount()+"");
+                    finalText.setText("Цена: " + calculator.getCount() + " руб.");
                     between3And7years.setEnabled(false);
                     more7Years.setEnabled(false);
                     break;
                 case R.id.age_car_3_7_button:
                     calculator.setAgeBetween3And7(true);
-                    finalText.setText(calculator.getCount()+"");
+                    finalText.setText("Цена: " + calculator.getCount() + " руб.");
                     less3Years.setEnabled(false);
                     more7Years.setEnabled(false);
                     break;
                 case R.id.age_car_more_7_button:
                     calculator.setAgeMore7(true);
-                    finalText.setText(calculator.getCount()+"");
+                    finalText.setText("Цена: " + calculator.getCount() + " руб.");
                     less3Years.setEnabled(false);
                     between3And7years.setEnabled(false);
                     break;
@@ -369,7 +389,6 @@ public class MainActivity extends AppCompatActivity {
         dumpTruckMore350.setEnabled(false);
         setEnable(buttonId);
     }
-
 
 
     private void setDumpTruckMassListener() {
@@ -471,10 +490,15 @@ public class MainActivity extends AppCompatActivity {
 
         calculator = new Calculator();
         finalText = findViewById(R.id.final_text);
+        finalText.setBackgroundColor(Color.parseColor("#FFECBF"));
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.app_name));
+        setSupportActionBar(toolbar);
     }
 
-    private void setAgeListener(){
-        less3Years  = findViewById(R.id.age_car_less_3_button);
+    private void setAgeListener() {
+        less3Years = findViewById(R.id.age_car_less_3_button);
         less3Years.setOnClickListener(radioButtonClickListener);
         between3And7years = findViewById(R.id.age_car_3_7_button);
         between3And7years.setOnClickListener(radioButtonClickListener);
@@ -482,7 +506,7 @@ public class MainActivity extends AppCompatActivity {
         more7Years.setOnClickListener(radioButtonClickListener);
     }
 
-    private void setOffroadVolumeListener(){
+    private void setOffroadVolumeListener() {
         less2500OffroadVolume = findViewById(R.id.m2_offroad_less_2500_button);
         between2500and5000OffroadVolume = findViewById(R.id.m2_offroad_between_2500_5000_button);
         between5000and10000OffroadVolume = findViewById(R.id.m2_offroad_between_5000_10000_button);
@@ -492,5 +516,12 @@ public class MainActivity extends AppCompatActivity {
         between2500and5000OffroadVolume.setOnClickListener(radioButtonClickListener);
         between5000and10000OffroadVolume.setOnClickListener(radioButtonClickListener);
         more10000OffroadVolume.setOnClickListener(radioButtonClickListener);
+    }
+
+    public void restart(View view) {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+//        this.recreate();
     }
 }

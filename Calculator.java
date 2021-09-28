@@ -1,7 +1,5 @@
 package com.example.customcalcv3;
 
-import java.util.HashMap;
-
 public class Calculator {
     //price double M1
     private static final double priceLegkovayaYoung = 544.50;
@@ -117,24 +115,6 @@ public class Calculator {
     private boolean isAgeLess3 = false;
     private boolean isAgeBetween3And7 = false;
     private boolean isAgeMore7 = false;
-
-//    private HashMap<String, Boolean> booleanEntries;
-
-//    public Calculator() {
-//        booleanEntries = new HashMap<>();
-//        booleanEntries.put("isM1", false);
-//        booleanEntries.put("isJur", false);
-//        booleanEntries.put("isAnotherCountry", false);
-//        booleanEntries.put("isPetrol", false);
-//        booleanEntries.put("isLess1000", false);
-//        booleanEntries.put("isBetween1000And2000", false);
-//        booleanEntries.put("isBetween2000And3000", false);
-//        booleanEntries.put("isBetween3000And3500", false);
-//        booleanEntries.put("isMore3500", false);
-//        booleanEntries.put("isAgeLess3", false);
-//        booleanEntries.put("isAgeBetween3And7", false);
-//        booleanEntries.put("isAgeMore7", false);
-//    }
 
     public void setM1(boolean m1) {
         isM1 = m1;
@@ -256,44 +236,43 @@ public class Calculator {
         isN1More10000 = n1More10000;
     }
 
-    public double getCount(){
-        if (isM1){ //calculate car
+    public double getCount() {
+        if (isM1) { //calculate car
             if (!isAnotherCountry || !isJur) {
                 if (isAgeLess3) return priceLegkovayaYoung;
                 if (isAgeBetween3And7) return priceLegkovayaMiddle;
                 if (isAgeMore7) return priceLegkovayaOld;
             } else {
-                if (!isPetrol){
+                if (!isPetrol) {
                     if (isAgeLess3) return priceLegkovayaYoung;
                     if (isAgeBetween3And7) return priceLegkovayaMiddle;
                     if (isAgeMore7) return priceLegkovayaMiddle;
                 } else {
-                    if (isAgeLess3){
-                        if(isLess1000) return priceJurFuelLess1000Young;
-                        if(isBetween1000And2000) return priceJurFuelBetween1000And2000Young;
-                        if(isBetween2000And3000) return priceJurFuelBetween2000And3000Young;
-                        if(isBetween3000And3500) return priceJurFuelBetween3000And3500Young;
-                        if(isMore3500) return priceJurFuelMore3500Young;
+                    if (isAgeLess3) {
+                        if (isLess1000) return priceJurFuelLess1000Young;
+                        if (isBetween1000And2000) return priceJurFuelBetween1000And2000Young;
+                        if (isBetween2000And3000) return priceJurFuelBetween2000And3000Young;
+                        if (isBetween3000And3500) return priceJurFuelBetween3000And3500Young;
+                        if (isMore3500) return priceJurFuelMore3500Young;
                     }
-                    if (isAgeBetween3And7){
-                        if(isLess1000) return priceJurFuelLess1000Middle;
-                        if(isBetween1000And2000) return priceJurFuelBetween1000And2000Middle;
-                        if(isBetween2000And3000) return priceJurFuelBetween2000And3000Middle;
-                        if(isBetween3000And3500) return priceJurFuelBetween3000And3500Middle;
-                        if(isMore3500) return priceJurFuelMore3500Middle;
+                    if (isAgeBetween3And7) {
+                        if (isLess1000) return priceJurFuelLess1000Middle;
+                        if (isBetween1000And2000) return priceJurFuelBetween1000And2000Middle;
+                        if (isBetween2000And3000) return priceJurFuelBetween2000And3000Middle;
+                        if (isBetween3000And3500) return priceJurFuelBetween3000And3500Middle;
+                        if (isMore3500) return priceJurFuelMore3500Middle;
                     }
-                    if (isAgeMore7){
-                        if(isLess1000) return priceJurFuelLess1000Old;
-                        if(isBetween1000And2000) return priceJurFuelBetween1000And2000Old;
-                        if(isBetween2000And3000) return priceJurFuelBetween2000And3000Old;
-                        if(isBetween3000And3500) return priceJurFuelBetween3000And3500Old;
-                        if(isMore3500) return priceJurFuelMore3500Old;
+                    if (isAgeMore7) {
+                        if (isLess1000) return priceJurFuelLess1000Old;
+                        if (isBetween1000And2000) return priceJurFuelBetween1000And2000Old;
+                        if (isBetween2000And3000) return priceJurFuelBetween2000And3000Old;
+                        if (isBetween3000And3500) return priceJurFuelBetween3000And3500Old;
+                        if (isMore3500) return priceJurFuelMore3500Old;
                     }
                 }
             }
-        }
-        else { //heavy vehicles
-            if (isN1Offroad){ // offroad N1 vehicles
+        } else { //heavy vehicles
+            if (isN1Offroad) { // offroad N1 vehicles
                 if (isAgeLess3) {
                     if (n1Less2) return priceNeLegkovaya2TYoung;
                     if (n1Between2And3) return priceNeLegkovaya2Between3TYoung;
@@ -327,48 +306,49 @@ public class Calculator {
                     }
                 }
             } else {
-                if(isElectroOffroad){ //electro M2 M3 offroad
+                if (isElectroOffroad) { //electro M2 M3 offroad
                     if (isAgeLess3) return priceNeLegkovayaElectroYoung;
                     if (isAgeBetween3And7) return priceNeLegkovayaElectroMiddleAndOld;
                     if (isAgeMore7) return priceNeLegkovayaElectroMiddleAndOld;
                 } else {
                     if (isGasOffroad) { //gas M2 M3 offroad
-                    if (isAgeLess3) {
-                        if (isN1Less2500) return priceNeLegkovaya2500Young;
-                        if (isN1Between2500And5000) return priceNeLegkovaya2500Between5000Young;
-                        if (isN1Between5000And10000) return priceNeLegkovaya5000Between10000Young;
-                        if (isN1More10000) return priceNeLegkovayaMore10000Young;
-                    } else {
-                        if (isAgeBetween3And7) {
-                            if (isN1Less2500) return priceNeLegkovaya2500Middle;
-                            if (isN1Between2500And5000)
-                                return priceNeLegkovaya2500Between5000Middle;
+                        if (isAgeLess3) {
+                            if (isN1Less2500) return priceNeLegkovaya2500Young;
+                            if (isN1Between2500And5000) return priceNeLegkovaya2500Between5000Young;
                             if (isN1Between5000And10000)
-                                return priceNeLegkovaya5000Between10000Middle;
-                            if (isN1More10000) return priceNeLegkovayaMore10000Middle;
+                                return priceNeLegkovaya5000Between10000Young;
+                            if (isN1More10000) return priceNeLegkovayaMore10000Young;
                         } else {
-                            if (isAgeMore7) {
-                                if (isN1Less2500) return priceNeLegkovaya2500Old;
+                            if (isAgeBetween3And7) {
+                                if (isN1Less2500) return priceNeLegkovaya2500Middle;
                                 if (isN1Between2500And5000)
-                                    return priceNeLegkovaya2500Between5000Old;
+                                    return priceNeLegkovaya2500Between5000Middle;
                                 if (isN1Between5000And10000)
-                                    return priceNeLegkovaya5000Between10000Old;
-                                if (isN1More10000) return priceNeLegkovayaMore10000Old;
+                                    return priceNeLegkovaya5000Between10000Middle;
+                                if (isN1More10000) return priceNeLegkovayaMore10000Middle;
+                            } else {
+                                if (isAgeMore7) {
+                                    if (isN1Less2500) return priceNeLegkovaya2500Old;
+                                    if (isN1Between2500And5000)
+                                        return priceNeLegkovaya2500Between5000Old;
+                                    if (isN1Between5000And10000)
+                                        return priceNeLegkovaya5000Between10000Old;
+                                    if (isN1More10000) return priceNeLegkovayaMore10000Old;
+                                }
                             }
                         }
-                    }
-                } else { //dump trucks
-                        if (isDumpTruckWeight50Between80){
+                    } else { //dump trucks
+                        if (isDumpTruckWeight50Between80) {
                             if (isAgeLess3) return priceDumpTruck50Between80Young;
                             if (isAgeBetween3And7) return priceDumpTruck50Between80Middle;
                             if (isAgeMore7) return priceDumpTruck50Between80Old;
                         } else {
-                            if (isDumpTruckWeight80Between350){
+                            if (isDumpTruckWeight80Between350) {
                                 if (isAgeLess3) return priceDumpTruck80Between350Young;
                                 if (isAgeBetween3And7) return priceDumpTruck80Between350Middle;
                                 if (isAgeMore7) return priceDumpTruck80Between350Old;
                             } else {
-                                if (isDumpTruckWeightMore350){
+                                if (isDumpTruckWeightMore350) {
                                     if (isAgeLess3) return priceDumpTruckMore350Young;
                                     if (isAgeBetween3And7) return priceDumpTruckMore350Middle;
                                     if (isAgeMore7) return priceDumpTruckMore350Old;
@@ -376,12 +356,13 @@ public class Calculator {
                                     if (isAgeLess3) return trailerAndHalfTrailerYoung;
                                     if (isAgeBetween3And7) return trailerAndHalfTrailerMiddle;
                                     if (isAgeMore7) return trailerAndHalfTrailerOld;
-                                }
                             }
                         }
                     }
                 }
             }
+        }
         return 0.0;
     }
 }
+//просто добавил коммент чтобы проверить работу гитхаб
