@@ -10,6 +10,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
     private int firstStepCount = 0;
@@ -495,6 +510,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout, toolbar, R.string.nav_main, R.string.nav_exit); //добавляем кнопку меню
+        drawerLayout.addDrawerListener(actionBarDrawerToggle); //подключаем к ней слушателя
+        actionBarDrawerToggle.syncState(); //запускаем меню в тулбаре
     }
 
     private void setAgeListener() {
