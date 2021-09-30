@@ -26,7 +26,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public static boolean isFinish = false;
     private int firstStepCount = 0;
     private int secondStepCount = 0;
     private int thirdStepCount = 0;
@@ -516,6 +519,12 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout, toolbar, R.string.nav_main, R.string.nav_exit); //добавляем кнопку меню
         drawerLayout.addDrawerListener(actionBarDrawerToggle); //подключаем к ней слушателя
         actionBarDrawerToggle.syncState(); //запускаем меню в тулбаре
+
+        NavigationView navigationView = findViewById(R.id.nav_view); //регаю слушателя для выпадающего меню
+        navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.getMenu().getItem(0).setChecked(true);
+
     }
 
     private void setAgeListener() {
@@ -537,6 +546,40 @@ public class MainActivity extends AppCompatActivity {
         between2500and5000OffroadVolume.setOnClickListener(radioButtonClickListener);
         between5000and10000OffroadVolume.setOnClickListener(radioButtonClickListener);
         more10000OffroadVolume.setOnClickListener(radioButtonClickListener);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) { //метод отвечает за обработку меню
+        Intent intent;
+        int id = item.getItemId();
+        switch (id){
+            case R.id.nav_main: intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            break;
+            case R.id.nav_connect: intent = new Intent(this, ConnectionActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_about: intent = new Intent(this, AboutAppActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_exit:
+                finishAffinity();
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public void restart(View view) {
